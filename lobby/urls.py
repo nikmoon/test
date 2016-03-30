@@ -15,9 +15,9 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
-from lobbyapp import views
+import lobbyapp.urls
 
 urlpatterns = [
+    url(r'^lobby/', include(lobbyapp.urls)),
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^lobby/', views.index),
 ]
