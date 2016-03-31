@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
+from django.http import HttpResponse, HttpResponseRedirect
 import lobbyapp.urls, lobbyapp.views
 #from . import settings
 
@@ -23,4 +24,5 @@ urlpatterns = [
     url(r'^logout/$', lobbyapp.views.logout_view),
     url(r'^lobby/', include(lobbyapp.urls)),
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^$', lambda request: HttpResponseRedirect('/lobby/')),
 ]
