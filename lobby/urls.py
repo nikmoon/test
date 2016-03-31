@@ -15,9 +15,12 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
-import lobbyapp.urls
+import lobbyapp.urls, lobbyapp.views
+#from . import settings
 
 urlpatterns = [
+    url(r'^login/$', lobbyapp.views.login_view),
+    url(r'^logout/$', lobbyapp.views.logout_view),
     url(r'^lobby/', include(lobbyapp.urls)),
     url(r'^admin/', include(admin.site.urls)),
 ]
