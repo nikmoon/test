@@ -5,9 +5,20 @@
     <title>Выбор игры</title>
 </head>
 <body>
-    <div style="float: right">
+    <div>
         <a href="/logout/?next=/">Выйти</a>
     </div>
-    <h1>Приветствую тебя, {{ user }}</h1>
+    <div>
+        <h1>Привет, {{ user }}</h1>
+    </div>
+    <div>
+        <h2>Список игроков онлайн:</h2>
+        <ul>
+            {% for username in onlineUsers %}
+                <li>{{ username }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+
 </body>
 </html>

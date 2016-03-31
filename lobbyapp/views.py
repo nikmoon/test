@@ -7,10 +7,19 @@ from django.contrib.auth.decorators import login_required
 from lobby import settings
 from django.contrib.auth.forms import AuthenticationForm
 
+
+onlineUsers = []
+
 # Create your views here.
+@login_required
 def index(request):
+    if request.session:
+        for key in request.session.keys():
+            print(key, '=>', request.session.get(key))
+        print()
     context = RequestContext(request, {
         'user': request.user,
+        'onlineUsers': onlineUsers,
     })
     return render(request, 'lobbyapp/index.html', context)
 
@@ -33,16 +42,22 @@ def login_view(request):
             return render(request, 'lobbyapp/login.html', RequestContext(request, {
                 'form': AuthenticationForm(request),
                 'next': request.POST['next'] or '/',
+                'error': True,
             }))
         else:
             login(request, user)
+            onlineUsers.append(username)
             return HttpResponseRedirect(request.POST['next'])
     else:
         return HttpResponseBadRequest('request method {} not allowed'.format(request.method))
 
 
-
+@login_required
 def logout_view(request):
+    try:
+        onlineUsers.remove(request.user.username)
+    except Exception:
+        pass
     logout(request)
     return HttpResponseRedirect(request.GET['next'] or '/')
 

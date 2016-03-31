@@ -5,6 +5,9 @@
     <title>Регистрация</title>
 </head>
 <body>
+    {% if error %}
+        <h3>Несуществующий пользователь или неправильный пароль</h3>
+    {% endif %}
     <form action="" method="post">
         {% csrf_token %}
         <table>
