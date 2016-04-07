@@ -38,10 +38,13 @@ def login_view(request):
             try:
                 LobbyUser.objects.create(django_user=user)
             except IntegrityError as ex:
-                message = 'Извините, пользователь с таким ником уже вошел'
-            else:
-                login(request, user)
-                return HttpResponseRedirect('/')
+                LobbyUser.objects.get(django_user=user).delete()
+                for s in Session.objects.all():
+                    if s.get_decoded().get('_auth_user_id') == str(user.id):
+                        s.delete()
+                LobbyUser.objects.create(django_user=user)
+            login(request, user)
+            return HttpResponseRedirect('/')
         else:
             message = 'Неверный пароль или несуществующее имя пользователя'
     elif request.method == 'GET':

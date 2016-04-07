@@ -1,0 +1,53 @@
+div {
+    box-sizing: border-box;
+}
+
+div#page {
+    min-height: 600px;
+    min-width: 800px;
+//    max-width: 1000px;
+    margin: auto;
+    padding: 10px;
+    border: 1px solid black;
+    background-color: #9CB;
+}
+
+div#gamers_online, div#actions, div#lobbys {
+    padding: 10px;
+}
+
+div#gamers_online {
+    width: 200px;
+    min-height: 300px;
+    max-height: 800px;
+    overflow: auto;
+    border: 3px solid black;
+    background-color: #398;
+}
+
+div#gamers_online_title {
+    text-align: center;
+    border: 1px solid white;
+    background-color: #677;
+}
+
+li#gamers_online_current {
+    border: 1px solid red;
+    background-color: yellow;
+}
+
+div#actions {
+    width: 200px;
+    overflow: auto;
+    border: 3px solid black;
+    background-color: #398;
+    min-height: 300px;
+    max-height: 800px;
+}
+
+div#lobbys {
+    border: 1px solid black;
+    margin-left: 210px;
+    margin-right: 210px;
+}
+

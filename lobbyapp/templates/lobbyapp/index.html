@@ -2,33 +2,92 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Выбор лобби</title>
+    <title>Игра Lobby</title>
+    <link rel="stylesheet" type="text/css" href="/static/lobbyapp/main.css"/>
 </head>
 <body>
-    <div style="text-align: right">
-        Ваше имя: [{{ user }}]
-    </div>
-    <div style="text-align: right">
-        <a href="/logout/?next=/">Выйти</a>
-    </div>
-    <div style="text-align: center">
-        <h1>Добро пожаловать</h1>
-    </div>
-    <div style="float: left">
-        {% if gamers_online %}
-            Игроки онлайн:
-            <ul>
-                {% for gamer in gamers_online %}
-                <li>{{ gamer.django_user.username }}</li>
-                {% endfor %}
+    <div id="page">
+        <div style="text-align: right">
+            Ваше имя: [{{ user }}]
+        </div>
+        <div style="text-align: right">
+            <a href="/logout/">Пойду спать...</a>
+        </div>
+        <div style="text-align: center">
+            <h1>Добро пожаловать</h1>
+        </div>
+
+
+
+
+        <div id="gamers_online" style="float: left">
+            <div id="gamers_online_title">
+                Игроки онлайн:
+            </div>
+            <div id="gamers_online_list">
+                <ol style="padding-left: 25px">
+                    {% for gamer in gamers_online %}
+                        {% if gamer.django_user.username == user.username %}
+                            <li id="gamers_online_current">{{ user }}</li>
+                        {% else %}
+                            <li>{{ gamer.django_user.username }}</li>
+                        {% endif %}
+                    {% endfor %}
+                </ol>
+            </div>
+        </div>
+
+        <div id="actions" style="float: right">
+            <div id="actions_title">
+                Список действий:
+            </div>
+            <ul style="padding-left: 25px">
+                <li><a href="/create_lobby/">Создать лобби</a> </li>
+                <!--<li><a href="/join_lobby/">Список созданных лобби</a></li>-->
             </ul>
-        {% endif %}
-    </div>
-    <div style="float: left">
-        <ul>
-            <li><a href="/create_lobby/">Создать лобби</a> </li>
-            <li><a href="/join_lobby/">Список созданных лобби</a></li>
-        </ul>
+        </div>
+
+        <div id="lobbys">
+            <h3>Список доступных лобби на 2 игрока:</h3>
+            <table>
+                <tr>
+                    <th>№</th>
+                    <th>Название</th>
+                    <th>Создатель</th>
+                    <th>Статус</th>
+                    <th>Количество игроков</th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td><a href="http://eu.battle.net/wow/ru" target="_blank">Лобби для игры в Wow</a></td>
+                    <td>{{ user }}</td>
+                    <td>набор участников</td>
+                    <td>2/2</td>
+                </tr>
+            </table>
+            <br/>
+            <h3>Список доступных лобби на 4 игрока:</h3>
+            <table>
+                <tr>
+                    <th>№</th>
+                    <th>Название</th>
+                    <th>Создатель</th>
+                    <th>Статус</th>
+                    <th>Количество игроков</th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Лобби для игры в Wow</td>
+                    <td>{{ user }}</td>
+                    <td>идет игра</td>
+                    <td>3/4</td>
+                </tr>
+            </table>
+        </div>
+
+        <div style="clear: both">
+        </div>
+
     </div>
 </body>
 </html>
