@@ -1,0 +1,15 @@
+form {
+    border: 2px solid #823;
+    width: 300px;
+    margin: 10px auto;
+    text-align: center;
+    padding: 10px;
+}
+#id_username, #id_password, #id_password1, #id_password2 {
+    width: 80%;
+    margin-bottom: 10px;
+    text-align: center;
+}
+#id_submit {
+    margin: auto;
+}

@@ -2,19 +2,24 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Регистрация</title>
+    <title>Вход на сайт</title>
+    <link rel="stylesheet" type="text/css" href="/static/lobbyapp/login.css"/>
 </head>
 <body>
-    {% if error %}
-        <h3>Несуществующий пользователь или неправильный пароль</h3>
-    {% endif %}
-    <form action="" method="post">
-        {% csrf_token %}
-        <table>
-        {{ form }}
-        </table>
-        <button type="submit">Войти</button>
-        <input type="hidden" name="next" value="{{ next }}" />
-    </form>
+    <div style="text-align: center">
+        <h2>Войти на сайт</h2>
+        {% if message %}
+            <h4 style="color: red">{{ message }}</h4>
+        {% endif %}
+        <form action="" method="post">
+            {% csrf_token %}
+            <label for="id_username">Имя пользователя</label><br />
+            <input id="id_username" maxlength="30" name="username" type="text" /><br/>
+            <label for="id_password">Пароль</label><br />
+            <input id="id_password" maxlength="30" name="password" type="password" /><br/>
+            <button id="id_submit" type="submit">Войти</button>
+        </form>
+        <a href="/registration/">Нет учетной записи?</a>
+    </div>
 </body>
 </html>

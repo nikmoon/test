@@ -2,13 +2,27 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Регистрация</title>
+    <title>Создание учетной записи</title>
+    <link rel="stylesheet" type="text/css" href="/static/lobbyapp/login.css"/>
 </head>
 <body>
-    <form action="" method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Зарегистрироваться</button>
-    </form>
+    <div style="text-align: center">
+        <h2>Создание учетной записи</h2>
+        {% if message %}
+            <h4 style="color: red">{{ message }}</h4>
+        {% endif %}
+        <form action="" method="post">
+            {% csrf_token %}
+            <label for="id_username">Имя пользователя</label><br />
+
+            <input id="id_username" maxlength="30" name="username" type="text" /><br/>
+            <label for="id_password1">Пароль</label><br />
+            <input id="id_password1" maxlength="30" name="password1" type="password" /><br/>
+            <label for="id_password2">Подтверждение пароля</label><br />
+            <input id="id_password2" maxlength="30" name="password2" type="password" /><br/>
+            <button id="id_submit" type="submit">Создать учетную запись</button>
+        </form>
+        <a href="/login/">Учетная запись уже есть?</a>
+    </div>
 </body>
 </html>

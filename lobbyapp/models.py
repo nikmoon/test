@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 
 
 class LobbyUser(models.Model):
-    django_user = models.ForeignKey(User)
+    django_user = models.ForeignKey(User, unique=True)
     deserter_end = models.DateTimeField(null=True)
 
 
