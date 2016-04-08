@@ -1,13 +1,16 @@
 from django.db import IntegrityError
 from django.shortcuts import render
 from django.template import RequestContext
-from django.http import HttpResponse, HttpResponseRedirect, HttpResponseBadRequest
+from django.http import HttpResponse, HttpResponseRedirect, HttpResponseBadRequest, JsonResponse
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.sessions.models import Session
 from lobbyapp.models import LobbyUser, Lobby
+
+from datetime import datetime
+import pytz
 
 Session.objects.all().delete()
 LobbyUser.objects.all().delete()
@@ -18,8 +21,14 @@ LobbyUser.objects.all().delete()
 
 @login_required
 def index(request):
+    dt = datetime.now(tz=pytz.utc)
+    lobby_user = LobbyUser.objects.get(django_user=request.user)
+    print(lobby_user.last_event_request)
+    lobby_user.last_event_request = dt
+    lobby_user.save()
     context = RequestContext(request, {
         'gamers_online': LobbyUser.objects.all(),
+        #'timestamp': dt.strftime('%Y%j%H%M%S%f'),
     })
     return render(request, 'lobbyapp/index.html', context)
 
@@ -36,7 +45,7 @@ def login_view(request):
         user = authenticate(username=username, password=password)
         if not user is None:
             try:
-                LobbyUser.objects.create(django_user=user)
+                LobbyUser.objects.create(django_user=user, last_event_request=datetime.now(tz=pytz.utc))
             except IntegrityError as ex:
                 LobbyUser.objects.get(django_user=user).delete()
                 for s in Session.objects.all():
@@ -53,15 +62,15 @@ def login_view(request):
         return HttpResponseBadRequest('request method {} not allowed'.format(request.method))
 
     context = RequestContext(request, {
-#        'form': AuthenticationForm(request),
         'message': message,
     })
     return render(request, 'lobbyapp/login.html', context)
 
 
 def logout_view(request):
-    LobbyUser.objects.get(django_user=request.user).delete()
-    logout(request)
+    if request.user.is_authenticated():
+        LobbyUser.objects.get(django_user=request.user).delete()
+        logout(request)
     return HttpResponseRedirect('/')
 
 
@@ -97,6 +106,13 @@ def registration_view(request):
         'message': message,
     })
     return render(request, 'lobbyapp/registration.html', context)
+
+
+def get_new_messages(request):
+    if not request.user.is_authenticated():
+        return HttpResponseRedirect('/login/')
+    response = JsonResponse({})
+    return response
 
 
 @login_required

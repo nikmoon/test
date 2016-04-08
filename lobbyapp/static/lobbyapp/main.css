@@ -19,7 +19,7 @@ div#gamers_online, div#actions, div#lobbys {
 div#gamers_online {
     width: 200px;
     min-height: 300px;
-    max-height: 800px;
+    max-height: 500px;
     overflow: auto;
     border: 3px solid black;
     background-color: #398;
@@ -50,4 +50,5 @@ div#lobbys {
     margin-left: 210px;
     margin-right: 210px;
 }
+
 

@@ -7,6 +7,7 @@ from django.contrib.auth.models import User
 class LobbyUser(models.Model):
     django_user = models.ForeignKey(User, unique=True)
     deserter_end = models.DateTimeField(null=True)
+    last_event_request = models.DateTimeField(null=True)
 
 
 class Lobby(models.Model):
