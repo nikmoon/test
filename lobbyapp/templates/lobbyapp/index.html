@@ -1,8 +1,9 @@
+{% load i18n %}
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Игра Lobby</title>
+    <title>{% trans "Игра Lobby" %}</title>
     <link rel="stylesheet" type="text/css" href="/static/lobbyapp/main.css"/>
 </head>
 <body>
@@ -57,14 +58,14 @@
         </div>
 
         <div id="lobbys_x2" class="lobbys">
-            <h3>Список доступных лобби на 2 игрока:</h3>
+            <h3>{% trans "Список доступных лобби на 2 игрока" %}:</h3>
             <table class="lobbys">
                 <tr>
                     <th>№</th>
-                    <th>Название</th>
-                    <th>Создатель</th>
-                    <th>Статус</th>
-                    <th>Количество<br/>игроков</th>
+                    <th>{% trans "Название" %}</th>
+                    <th>{% trans "Создатель" %}</th>
+                    <th>{% trans "Статус" %}</th>
+                    <th>{% trans "Количество<br/>игроков" %}</th>
                 </tr>
                 {% for lobby in lobbys %}
                 {% if lobby.max_users_count == 2 %}
@@ -81,14 +82,14 @@
         </div>
         <br/>
         <div id="lobbys_x4" class="lobbys">
-            <h3>Список доступных лобби на 4 игрока:</h3>
+            <h3>{% trans "Список доступных лобби на 4 игрока " %}:</h3>
             <table class="lobbys">
                 <tr>
                     <th>№</th>
-                    <th>Название</th>
-                    <th>Создатель</th>
-                    <th>Статус</th>
-                    <th>Количество<br/>игроков</th>
+                    <th>{% trans "Название" %}</th>
+                    <th>{% trans "Создатель" %}</th>
+                    <th>{% trans "Статус" %}</th>
+                    <th>{% trans "Количество<br/>игроков" %}</th>
                 </tr>
                 {% for lobby in lobbys %}
                 {% if lobby.max_users_count == 4 %}

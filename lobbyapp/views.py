@@ -192,7 +192,8 @@ def create_lobby(request):
     if request.method == 'GET':
         online_user = OnlineUser.objects.get(djuser=request.user)
         if online_user.deserter_end:
-            return HttpResponseRedirect("/")
+            if online_user.deserter_end > datetime.now(pytz.utc):
+                return HttpResponseRedirect("/")
         context = RequestContext(request, {
             'Lobby': Lobby,
         })
@@ -231,23 +232,25 @@ def lobby_view(request):
             time_left = (lobby.end_game - datetime.now(pytz.utc)).seconds
     else:
         time_left = None
-        if request.method == 'POST':
-            if 'begin_game' in request.POST:
-                if lobby.curr_users_count == lobby.max_users_count:
-                    lobby.curr_status = 'RUN'
-                    ev = Event.objects.create(etype=5, lobby=lobby)
-                    lobby.end_game = ev.dtstamp + timedelta(minutes=1)
-                    lobby.save()
+    if request.method == 'POST':
+        if 'begin_game' in request.POST:
+            if time_left:
                 return HttpResponseRedirect('/lobby/')
-            elif 'leave_lobby' in request.POST:
-                lobby.curr_users_count -= 1
+            if lobby.curr_users_count == lobby.max_users_count:
+                lobby.curr_status = 'RUN'
+                ev = Event.objects.create(etype=5, lobby=lobby)
+                lobby.end_game = ev.dtstamp + timedelta(minutes=1)
                 lobby.save()
-                lobby_user.delete()
-                Event.objects.create(etype=7, user=request.user, lobby=lobby)
-                online_user = OnlineUser.objects.get(djuser=request.user)
-                online_user.deserter_end = datetime.now(pytz.utc) + timedelta(minutes=1)
-                online_user.save()
-                return HttpResponseRedirect("/")
+            return HttpResponseRedirect('/lobby/')
+        elif 'leave_lobby' in request.POST:
+            lobby.curr_users_count -= 1
+            lobby.save()
+            lobby_user.delete()
+            Event.objects.create(etype=7, user=request.user, lobby=lobby)
+            online_user = OnlineUser.objects.get(djuser=request.user)
+            online_user.deserter_end = datetime.now(pytz.utc) + timedelta(minutes=1)
+            online_user.save()
+            return HttpResponseRedirect("/")
     gamers = LobbyUser.objects.filter(lobby=lobby)
     context = RequestContext(request, {
         'lobby': lobby,
@@ -289,8 +292,3 @@ def join_lobby(request, lobby_id):
     online_user.save()
 
     return HttpResponseRedirect('/lobby/')
-
-
-@login_required
-def start_game(request):
-    return render(request, 'lobbyapp/game.html')

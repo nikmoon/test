@@ -1,0 +1,245 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-04-19 08:20+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: lobbyapp/models.py:15
+msgid "2 игрока"
+msgstr "2 players"
+
+#: lobbyapp/models.py:16
+msgid "4 игрока"
+msgstr "4 players"
+
+#: lobbyapp/models.py:19
+msgid "набор участников"
+msgstr "wait gamers"
+
+#: lobbyapp/models.py:20
+msgid "идет игра"
+msgstr "game in progress"
+
+#: lobbyapp/models.py:38
+msgid "Игрок вошел"
+msgstr "Player log in"
+
+#: lobbyapp/models.py:39
+msgid "Игрок вышел"
+msgstr "Player log out"
+
+#: lobbyapp/models.py:40
+msgid "Лобби добавлено"
+msgstr "Lobby added"
+
+#: lobbyapp/models.py:41
+msgid "Лобби завершено"
+msgstr "Lobby ended"
+
+#: lobbyapp/models.py:42
+msgid "Лобби запущено"
+msgstr "Lobby started"
+
+#: lobbyapp/models.py:43
+msgid "Игрок присоединился к лобби"
+msgstr "The player joined the lobby"
+
+#: lobbyapp/models.py:44
+msgid "Игрок покинул лобби"
+msgstr "The player left the lobby"
+
+#: lobbyapp/templates/lobbyapp/create_lobby.html:10
+#: lobbyapp/templates/lobbyapp/lobby.html:11
+msgid "На главную"
+msgstr "To main page"
+
+#: lobbyapp/templates/lobbyapp/create_lobby.html:23
+msgid "Создать новое лобби"
+msgstr "Create lobby"
+
+#: lobbyapp/templates/lobbyapp/index.html:6
+msgid "Игра Lobby"
+msgstr "Lobby Game"
+
+#: lobbyapp/templates/lobbyapp/index.html:12
+msgid "Ваше имя"
+msgstr "Your name"
+
+#: lobbyapp/templates/lobbyapp/index.html:15
+msgid "Выйти"
+msgstr "Logout"
+
+#: lobbyapp/templates/lobbyapp/index.html:19
+msgid "Вы дезертир"
+msgstr "You are deserter"
+
+#: lobbyapp/templates/lobbyapp/index.html:23
+msgid "Добро пожаловать"
+msgstr "Welcome"
+
+#: lobbyapp/templates/lobbyapp/index.html:28
+msgid "Игроки онлайн"
+msgstr "Gamers online"
+
+#: lobbyapp/templates/lobbyapp/index.html:49
+msgid "Список действий"
+msgstr "Action list"
+
+#: lobbyapp/templates/lobbyapp/index.html:53
+msgid "Перейти к лобби"
+msgstr "Go to the lobby"
+
+#: lobbyapp/templates/lobbyapp/index.html:55
+msgid "Создать лобби"
+msgstr "Create lobby"
+
+#: lobbyapp/templates/lobbyapp/index.html:61
+msgid "Список доступных лобби на 2 игрока"
+msgstr "The list of available lobbys for 2 players"
+
+#: lobbyapp/templates/lobbyapp/index.html:65
+#: lobbyapp/templates/lobbyapp/index.html:89
+msgid "Название"
+msgstr "Name"
+
+#: lobbyapp/templates/lobbyapp/index.html:66
+#: lobbyapp/templates/lobbyapp/index.html:90
+#: lobbyapp/templates/lobbyapp/lobby.html:16
+msgid "Создатель"
+msgstr "Owner"
+
+#: lobbyapp/templates/lobbyapp/index.html:67
+#: lobbyapp/templates/lobbyapp/index.html:91
+msgid "Статус"
+msgstr "Status"
+
+#: lobbyapp/templates/lobbyapp/index.html:68
+#: lobbyapp/templates/lobbyapp/index.html:92
+msgid "Количество<br/>игроков"
+msgstr "Players count"
+
+#: lobbyapp/templates/lobbyapp/index.html:85
+msgid "Список доступных лобби на 4 игрока "
+msgstr "The list of available lobbys for 4 players"
+
+#: lobbyapp/templates/lobbyapp/lobby.html:6
+msgid "Лобби"
+msgstr "Lobby"
+
+#: lobbyapp/templates/lobbyapp/lobby.html:17
+msgid "Состояние"
+msgstr "Status"
+
+#: lobbyapp/templates/lobbyapp/lobby.html:20
+msgid "До завершения осталось"
+msgstr "Remaining to complete"
+
+#: lobbyapp/templates/lobbyapp/lobby.html:24
+msgid "Участники"
+msgstr "Members"
+
+#: lobbyapp/templates/lobbyapp/lobby.html:34
+msgid "Начать игру"
+msgstr "Start game"
+
+#: lobbyapp/templates/lobbyapp/lobby.html:36
+msgid "Покинуть лобби"
+msgstr "Leave lobby"
+
+#: lobbyapp/templates/lobbyapp/login.html:6
+msgid "Вход на сайт"
+msgstr "Enter the site"
+
+#: lobbyapp/templates/lobbyapp/login.html:11
+msgid "Войти на сайт"
+msgstr "Enter the site"
+
+#: lobbyapp/templates/lobbyapp/login.html:17
+#: lobbyapp/templates/lobbyapp/registration.html:17
+msgid "Имя пользователя"
+msgstr "Username"
+
+#: lobbyapp/templates/lobbyapp/login.html:19
+#: lobbyapp/templates/lobbyapp/registration.html:19
+msgid "Пароль"
+msgstr "Password"
+
+#: lobbyapp/templates/lobbyapp/login.html:21
+msgid "Войти"
+msgstr "Enter"
+
+#: lobbyapp/templates/lobbyapp/login.html:23
+msgid "Нет учетной записи?"
+msgstr "You do not have an account?"
+
+#: lobbyapp/templates/lobbyapp/registration.html:6
+#: lobbyapp/templates/lobbyapp/registration.html:11
+msgid "Создание учетной записи"
+msgstr "Creating account"
+
+#: lobbyapp/templates/lobbyapp/registration.html:21
+msgid "Подтверждение пароля"
+msgstr "Confirm password"
+
+#: lobbyapp/templates/lobbyapp/registration.html:23
+msgid "Создать учетную запись"
+msgstr "Create account"
+
+#: lobbyapp/templates/lobbyapp/registration.html:25
+msgid "Учетная запись уже есть?"
+msgstr "Do you already have an account?"
+
+#: lobbyapp/views.py:59
+msgid "Вы уже вошли как"
+msgstr "You are log in before as"
+
+#: lobbyapp/views.py:65
+msgid "В форме отсутствуют один или несколько параметров: username, password"
+msgstr "Missed parameters in form: username, password"
+
+#: lobbyapp/views.py:82
+msgid "Неверный пароль или несуществующее имя пользователя"
+msgstr "Invalid password or username"
+
+#: lobbyapp/views.py:118
+msgid "Вы уже зарегистрированы и залогинены"
+msgstr "You auth and logged before"
+
+#: lobbyapp/views.py:125
+msgid ""
+"В форме отсутствуют один или несколько параметров: username, password1, "
+"password2"
+msgstr "Missed parameters in form: username, password1, password2"
+
+#: lobbyapp/views.py:128
+msgid "Имя занято, пожалуйста, выберите другое"
+msgstr "This username already taken, please choose another"
+
+#: lobbyapp/views.py:130
+msgid "Пароли не совпадают"
+msgstr "Passwords not match"
+
+#: lobbyapp/views.py:135
+msgid "Поля не могут быть пустыми"
+msgstr "Fields cant be empty"
+
+#: lobbyapp/views.py:137
+msgid "Учетная запись создана, входите"
+msgstr "Account created, log in"
+
+#: lobbyapp/views.py:203
+msgid "Вы не ввели название для нового лобби"
+msgstr "You have not entered a name for new lobby"
