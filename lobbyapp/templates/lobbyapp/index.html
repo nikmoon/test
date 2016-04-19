@@ -13,12 +13,14 @@
         <div style="text-align: right">
             <a href="/logout/">Пойду спать...</a>
         </div>
+        {% if deserter_left %}
+        <div id="deserter" style="text-align: right">
+            Вы дезертир:<span id="deserter_left">{{ deserter_left }}</span>
+        </div>
+        {% endif %}
         <div style="text-align: center">
             <h1>Добро пожаловать</h1>
         </div>
-
-
-
 
         <div id="gamers_online" style="float: left">
             <div id="gamers_online_title">
@@ -27,61 +29,78 @@
             <div id="gamers_online_list">
                 <ol style="padding-left: 25px">
                     {% for gamer in gamers_online %}
-                        {% if gamer.django_user.username == user.username %}
+                        {% if gamer.djuser.username == user.username %}
                             <li id="gamers_online_current">{{ user }}</li>
                         {% else %}
-                            <li>{{ gamer.django_user.username }}</li>
+                            <li name="{{ gamer.djuser.username }}">{{ gamer.djuser.username }}</li>
                         {% endif %}
                     {% endfor %}
                 </ol>
             </div>
         </div>
 
+        {% if lobby_id %}
+            <input type="hidden" id="lobby_id" value="{{ lobby_id }}"/>
+        {% endif %}
+
         <div id="actions" style="float: right">
             <div id="actions_title">
                 Список действий:
             </div>
             <ul style="padding-left: 25px">
-                <li><a href="/create_lobby/">Создать лобби</a> </li>
-                <!--<li><a href="/join_lobby/">Список созданных лобби</a></li>-->
+                {% if lobby_id %}
+                    <li name="lobby_id"><a href="/lobby/">Перейти к лобби</a></li>
+                {% else %}
+                    <li name="lobby"><a href="/create_lobby/">Создать лобби</a></li>
+                {% endif %}
             </ul>
         </div>
 
-        <div id="lobbys">
+        <div id="lobbys_x2" class="lobbys">
             <h3>Список доступных лобби на 2 игрока:</h3>
-            <table>
+            <table class="lobbys">
                 <tr>
                     <th>№</th>
                     <th>Название</th>
                     <th>Создатель</th>
                     <th>Статус</th>
-                    <th>Количество игроков</th>
+                    <th>Количество<br/>игроков</th>
                 </tr>
-                <tr>
-                    <td>1</td>
-                    <td><a href="http://eu.battle.net/wow/ru" target="_blank">Лобби для игры в Wow</a></td>
-                    <td>{{ user }}</td>
-                    <td>набор участников</td>
-                    <td>2/2</td>
+                {% for lobby in lobbys %}
+                {% if lobby.max_users_count == 2 %}
+                <tr name="{{ lobby.name }}">
+                    <td name="num">{{ forloop.counter }}</td>
+                    <td name="link"><a href="/join_lobby/{{lobby.id}}">{{ lobby.name }}</a></td>
+                    <td name="owner">{{lobby.owner}}</td>
+                    <td name="status">{{lobby.get_curr_status_display}}</td>
+                    <td name="curcount">{{lobby.curr_users_count}}/{{lobby.max_users_count}}</td>
                 </tr>
+                {% endif %}
+                {% endfor %}
             </table>
-            <br/>
+        </div>
+        <br/>
+        <div id="lobbys_x4" class="lobbys">
             <h3>Список доступных лобби на 4 игрока:</h3>
-            <table>
+            <table class="lobbys">
                 <tr>
                     <th>№</th>
                     <th>Название</th>
                     <th>Создатель</th>
                     <th>Статус</th>
-                    <th>Количество игроков</th>
+                    <th>Количество<br/>игроков</th>
                 </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Лобби для игры в Wow</td>
-                    <td>{{ user }}</td>
-                    <td>идет игра</td>
-                    <td>3/4</td>
+                {% for lobby in lobbys %}
+                {% if lobby.max_users_count == 4 %}
+                <tr  name="{{ lobby.name }}">
+                    <td name="num">{{ forloop.counter }}</td>
+                    <td name="link"><a href="/join_lobby/{{lobby.id}}">{{ lobby.name }}</a></td>
+                    <td name="owner">{{lobby.owner}}</td>
+                    <td name="status">{{lobby.get_curr_status_display}}</td>
+                    <td name="curcount">{{lobby.curr_users_count}}/{{lobby.max_users_count}}</td>
                 </tr>
+                {% endif %}
+                {% endfor %}
             </table>
         </div>
 

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Создание лобби</title>
+</head>
+<body>
+    <div style="text-align: right;">
+        <a href="/">На главную</a>
+    </div>
+    {% if message %}
+    <p>{{ message }}</p>
+    {% endif %}
+    <form action="" method="post">
+        {% csrf_token %}
+        <select name="count">
+            {% for c, d in Lobby.USERS_COUNT %}
+                <option value="{{c}}">{{d}}</option>
+            {% endfor %}
+        </select><br/>
+        <input name="name" type="text" size="30"/><br/>
+        <button type="submit">Создать новое лобби</button>
+    </form>
+</body>
+</html>

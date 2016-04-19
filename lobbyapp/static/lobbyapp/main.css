@@ -45,10 +45,13 @@ div#actions {
     max-height: 800px;
 }
 
-div#lobbys {
+div.lobbys {
     border: 1px solid black;
+    padding: 5px;
     margin-left: 210px;
     margin-right: 210px;
 }
 
-
+table.lobbys tr th, table.lobbys tr td {
+    border: 1px solid red;
+}

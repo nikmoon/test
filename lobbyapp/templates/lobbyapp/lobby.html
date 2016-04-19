@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Лобби</title>
+</head>
+<body>
+    <div>
+        <div style="text-align: right;">
+            <a href="/">На главную</a>
+        </div>
+        <div id="lobby_info">
+            <h3>{{ lobby.name }}</h3>
+            <h4>{{lobby.get_max_users_count_display}}</h4>
+            Создатель: <span id="owner">{{lobby.owner}}</span><br/>
+            Состояние: <span id="status">{{lobby.get_curr_status_display}}</span>
+                    <span id="count">({{count}}/{{lobby.max_users_count}})</span><br/>
+            {% if time_left %}
+            До завершения осталось: <span id="time_left">{{ time_left }}</span><br/>
+            {% endif %}
+        </div>
+        <div id="gamers">
+            <h3>Участники</h3>
+            <ol>
+                {% for gamer in gamers %}
+                <li name="{{ gamer.djuser.username }}">{{gamer.djuser}}</li>
+                {% endfor %}
+            </ol>
+        </div>
+        <form action="" method="post">
+            {% csrf_token %}
+            {% if lobby.owner == user %}
+                <button type="submit" name="begin_game" value="1">Начать игру</button>
+            {% else %}
+                <button type="submit" name="leave_lobby">Покинуть лобби</button>
+            {% endif %}
+        </form>
+    </div>
+    <script src="/static/lobbyapp/jquery-1.12.3.min.js"></script>
+    <script src="/static/lobbyapp/lobby.js"></script>
+</body>
+</html>
