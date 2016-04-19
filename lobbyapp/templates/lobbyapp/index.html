@@ -8,23 +8,23 @@
 <body>
     <div id="page">
         <div style="text-align: right">
-            Ваше имя: [{{ user }}]
+            {% trans "Ваше имя" %}: [{{ user }}]
         </div>
         <div style="text-align: right">
-            <a href="/logout/">Пойду спать...</a>
+            <a href="/logout/">{% trans "Выйти" %}</a>
         </div>
         {% if deserter_left %}
         <div id="deserter" style="text-align: right">
-            Вы дезертир:<span id="deserter_left">{{ deserter_left }}</span>
+            {% trans "Вы дезертир" %}:<span id="deserter_left">{{ deserter_left }}</span>
         </div>
         {% endif %}
         <div style="text-align: center">
-            <h1>Добро пожаловать</h1>
+            <h1>{% trans "Добро пожаловать" %}</h1>
         </div>
 
         <div id="gamers_online" style="float: left">
             <div id="gamers_online_title">
-                Игроки онлайн:
+                {% trans "Игроки онлайн" %}:
             </div>
             <div id="gamers_online_list">
                 <ol style="padding-left: 25px">
@@ -45,13 +45,13 @@
 
         <div id="actions" style="float: right">
             <div id="actions_title">
-                Список действий:
+                {% trans "Список действий" %}:
             </div>
             <ul style="padding-left: 25px">
                 {% if lobby_id %}
-                    <li name="lobby_id"><a href="/lobby/">Перейти к лобби</a></li>
+                    <li name="lobby_id"><a href="/lobby/">{% trans "Перейти к лобби" %}</a></li>
                 {% else %}
-                    <li name="lobby"><a href="/create_lobby/">Создать лобби</a></li>
+                    <li name="lobby"><a href="/create_lobby/">{% trans "Создать лобби" %}</a></li>
                 {% endif %}
             </ul>
         </div>
